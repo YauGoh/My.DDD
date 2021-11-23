@@ -36,6 +36,8 @@ namespace My.DDD
 
         public abstract IEnumerable<TAggregate> Where(Expression<Func<TAggregate, bool>> condition);
 
+        public abstract Task<int> CountAsync(Expression<Func<TAggregate, bool>> condition);
+
         protected abstract Task PerformCreateAsync(TAggregate aggregate);
 
         protected abstract Task PerformUpdateAsync(TAggregate aggregate);

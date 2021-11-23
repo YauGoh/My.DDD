@@ -9,5 +9,6 @@ namespace My.DDD
         Task UpdateAsync(TAggregate aggregate);
         Task DeleteAsync(TAggregate aggregate);
         IEnumerable<TAggregate> Where(Expression<Func<TAggregate, bool>> condition);
+        Task<int> CountAsync(Expression<Func<TAggregate, bool>> condition);
     }
 }
