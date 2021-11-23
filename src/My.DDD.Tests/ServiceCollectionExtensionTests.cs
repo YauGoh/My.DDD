@@ -17,7 +17,7 @@ namespace My.DDD.Tests
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
-            var handler = serviceProvider.GetRequiredService<IEventHandler<ExampleEvent>>();
+            var handler = serviceProvider.GetRequiredService<IDomainEventHandler<ExampleEvent>>();
 
             handler.Should().BeOfType<ExampleEventHandler>();
         }

@@ -2,17 +2,17 @@
 {
     public abstract class Aggregate : Entity
     {
-        private List<IEvent> _events = new List<IEvent>();
+        private List<IDomainEvent> _events = new List<IDomainEvent>();
 
-        public IReadOnlyList<IEvent> RaisedEvents => _events;
+        public IReadOnlyList<IDomainEvent> RaisedEvents => _events;
 
         /// <summary>
         /// Raises and event that will be published when the Aggregate is persisted by the 
         /// Repository via a call to CreateAsync or UpdateAsync.
         /// </summary>
-        /// <typeparam name="TEvent"></typeparam>
+        /// <typeparam name="TDomainEvent"></typeparam>
         /// <param name="event"></param>
-        protected void Raise<TEvent>(TEvent @event) where TEvent : IEvent => _events.Add(@event);
+        protected void Raise<TDomainEvent>(TDomainEvent @event) where TDomainEvent : IDomainEvent => _events.Add(@event);
 
         public void ClearRaisedEvents() => _events.Clear();
     }

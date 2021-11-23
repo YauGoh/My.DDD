@@ -4,9 +4,9 @@ namespace My.DDD
 {
     public abstract class BaseRepository<TAggregate> : IRepository<TAggregate> where TAggregate : Aggregate
     {
-        private readonly IEventBus _eventBus;
+        private readonly IDomainEventBus _eventBus;
 
-        public BaseRepository(IEventBus eventBus)
+        public BaseRepository(IDomainEventBus eventBus)
         {
             _eventBus = eventBus;
         }
@@ -51,9 +51,9 @@ namespace My.DDD
             aggregate.ClearRaisedEvents();
         }
 
-        private Task Publish<TEvent>(TEvent @event) where TEvent : IEvent
+        private Task Publish<TDomainEvent>(TDomainEvent domainEvent) where TDomainEvent : IDomainEvent
         {
-            return _eventBus.PublishAsync(@event);
+            return _eventBus.PublishAsync(domainEvent);
         }
     }
 }

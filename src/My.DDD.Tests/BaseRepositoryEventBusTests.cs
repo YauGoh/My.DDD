@@ -7,14 +7,14 @@ namespace My.DDD.Tests
 {
     public class BaseRepositoryEventBusTests
     {
-        private readonly Mock<IEventBus> _mockBus;
+        private readonly Mock<IDomainEventBus> _mockBus;
         private readonly Mock<BaseRepository<ExampleAggregate>> _mockRepository;
 
         private readonly BaseRepository<ExampleAggregate> _sut;
 
         public BaseRepositoryEventBusTests()
         {
-            _mockBus = new Mock<IEventBus>();
+            _mockBus = new Mock<IDomainEventBus>();
             _mockRepository = new Mock<BaseRepository<ExampleAggregate>>(_mockBus.Object);
 
             _sut = _mockRepository.Object;

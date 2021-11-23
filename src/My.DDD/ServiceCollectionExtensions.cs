@@ -25,7 +25,7 @@ namespace My.DDD
             {
                 foreach (var eventType in info.EventTypes)
                 {
-                    services.AddTransient(typeof(IEventHandler<>).MakeGenericType(eventType), info.Handler);
+                    services.AddTransient(typeof(IDomainEventHandler<>).MakeGenericType(eventType), info.Handler);
                 }
             }
 
@@ -37,7 +37,7 @@ namespace My.DDD
             return handlerType
                 .FindInterfaces(
                     (t, _) => t.IsGenericType &&
-                              t.GetGenericTypeDefinition() == typeof(IEventHandler<>),
+                              t.GetGenericTypeDefinition() == typeof(IDomainEventHandler<>),
                     null)
                 .Select(t => t.GenericTypeArguments.First());
         }

@@ -2,5 +2,5 @@
 
 namespace My.DDD.Tests.TestData
 {
-    public record ExampleEvent(Guid ExampleAggregateId) : IEvent;
+    public record ExampleEvent(Guid ExampleAggregateId) : IDomainEvent;
 }
