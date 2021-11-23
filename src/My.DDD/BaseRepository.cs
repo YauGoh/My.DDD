@@ -1,4 +1,6 @@
-﻿namespace My.DDD
+﻿using System.Linq.Expressions;
+
+namespace My.DDD
 {
     public abstract class BaseRepository<TAggregate> : IRepository<TAggregate> where TAggregate : Aggregate
     {
@@ -31,6 +33,8 @@
 
             await DispatchRaisedEvents(aggregate);
         }
+
+        public abstract IEnumerable<TAggregate> Where(Expression<Func<TAggregate, bool>> condition);
 
         protected abstract Task PerformCreateAsync(TAggregate aggregate);
 
